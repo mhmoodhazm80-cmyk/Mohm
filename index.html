@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>المستشار محمد منير راشد - للمحاماة والاستشارات الاستراتيجية</title>
+    <!-- خطوط ملكية واحترافية للواجهة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark-solid: #04080f;
+            --bg-premium-dark: #09121f;
+            --gold-dark: #b89028; /* ذهبي دافئ معتق مستوحى من لوحة المكتب بالمكتب */
+            --gold-light: #e5c158;
+            --card-front-bg: rgba(15, 27, 46, 0.88);
+            --card-back-bg: rgba(22, 38, 61, 0.98);
+            --text-gold: #e2b744;
+            --text-light: #f5f6f8;
+            --text-muted: #a0aec0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark-solid);
+            color: var(--text-light);
+            overflow-x: hidden;
+            width: 100vw;
+        }
+
+        /* الهيدر وقائمة التنقل */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(4, 8, 15, 0.95), transparent);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-text {
+            color: var(--text-gold);
+            font-family: 'Amiri', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hamburger {
+            background: none;
+            border: none;
+            color: var(--text-gold);
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background: rgba(4, 8, 15, 0.98);
+            border-left: 2px solid var(--gold-dark);
+            transition: 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 100px 30px;
+            gap: 25px;
+            z-index: 1000;
+        }
+
+        .nav-menu.active { right: 0; }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(184, 144, 40, 0.15);
+            padding-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-menu a i { color: var(--text-gold); }
+
+        /* غلاف البروفايل المعتمد على الصورة */
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            background: #03060a;
+            margin-bottom: 80px;
+            border-bottom: 2px solid var(--gold-dark);
+        }
+
+        .cover-image-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 260px;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .cover-image-layer img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4; /* الحفاظ على المظهر الداكن الفخم متناسقاً مع الخلفية */
+        }
+
+        .profile-avatar-container {
+            position: absolute;
+            top: 195px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 135px;
+            height: 135px;
+            border-radius: 50%;
+            border: 4px solid var(--gold-dark);
+            background: var(--bg-dark-solid);
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.8);
+            z-index: 5;
+        }
+
+        .profile-avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* المحتوى والعبارات الفخمة المستهدفة */
+        main { padding: 0 20px 120px 20px; }
+
+        .title-architecture {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .title-architecture h1 {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .title-architecture p {
+            color: var(--text-gold);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .legal-quote {
+            background: linear-gradient(135deg, #111e30, #09121f);
+            border: 1px solid var(--gold-dark);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-family: 'Amiri', serif;
+            font-size: 1.3rem;
+            color: var(--text-gold);
+            margin-bottom: 30px;
+            box-shadow: inset 0 0 15px rgba(184, 144, 40, 0.1);
+        }
+
+        /* قسم الفيديو التوضيحي المستقل */
+        .showcase-video-container {
+            margin: 30px 0 40px 0;
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid var(--gold-dark);
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            background: #000;
+        }
+
+        .showcase-video-container video {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .section-tag {
+            font-size: 1.2rem;
+            color: var(--text-gold);
+            margin: 35px 0 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-right: 3px solid var(--gold-dark);
+            padding-right: 12px;
+            font-weight: 700;
+        }
+
+        /* هيكلة المربعات المفرغة الفاخرة للـ Bio والخبرة */
+        .hollow-bio-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .hollow-box {
+            border: 1px solid rgba(184, 144, 40, 0.25);
+            background: rgba(9, 18, 31, 0.5);
+            padding: 18px;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .hollow-box i {
+            color: var(--text-gold);
+            font-size: 1.3rem;
+            margin-top: 3px;
+        }
+
+        .hollow-box div h4 {
+            color: var(--text-gold);
+            font-size: 1rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .hollow-box div p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* كروت فريق العمل المكون من 5 تخصصات وتلف 3D */
+        .team-flip-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 210px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: right;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .flip-card-inner.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid rgba(184, 144, 40, 0.3);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+        }
+
+        .card-front {
+            background: var(--card-front-bg);
+            border-right: 5px solid var(--gold-dark);
+        }
+
+        .card-front h3 {
+            color: var(--text-gold);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .card-front .role-tag {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .card-front p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .card-front .tap-hint {
+            color: var(--text-gold);
+            font-size: 0.75rem;
+            align-self: flex-end;
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            opacity: 0.7;
+        }
+
+        .card-back {
+            background: var(--card-back-bg);
+            transform: rotateY(180deg);
+            border-left: 5px solid var(--gold-light);
+            justify-content: flex-start;
+            overflow-y: auto;
+        }
+
+        .card-back h4 {
+            color: var(--gold-light);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(229, 193, 88, 0.2);
+            padding-bottom: 4px;
+        }
+
+        .card-back ul {
+            list-style: none;
+        }
+
+        .card-back ul li {
+            color: #e2e8f0;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .card-back ul li i {
+            color: var(--gold-light);
+            font-size: 0.7rem;
+            margin-top: 4px;
+        }
+
+        /* قنوات الدعم وأزرار الاتصال والـ GPS */
+        .gps-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .gps-card-btn {
+            background: linear-gradient(135deg, #09121f, #050b14);
+            border: 1px solid rgba(184, 144, 40, 0.4);
+            border-radius: 12px;
+            padding: 16px;
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .gps-card-btn .btn-badge {
+            width: 45px;
+            height: 45px;
+            background: var(--gold-dark);
+            color: #000;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .gps-card-btn div h5 {
+            color: var(--text-gold);
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .gps-card-btn div p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 2px;
+        }
+
+        .contact-fast-rack {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .fast-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .fast-btn.wp {
+            background: #128c7e;
+            color: #fff;
+        }
+
+        .fast-btn.phone {
+            background: rgba(184, 144, 40, 0.15);
+            border: 1px solid var(--gold-dark);
+            color: var(--text-gold);
+        }
+
+        /* الزر العائم السفلي لتجربة الحجز */
+        .cta-action-sheet {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+            color: #000;
+            padding: 16px;
+            border-radius: 30px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.1rem;
+            box-shadow: 0 6px 25px rgba(184, 144, 40, 0.4);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-text">المستشار محمد منير راشد</div>
+        <button class="hamburger" onclick="toggleMenu()"><i class="fa-solid fa-bars-staggered"></i></button>
+    </header>
+
+    <nav class="nav-menu" id="navMenu">
+        <a href="#" onclick="toggleMenu()"><i class="fa-solid fa-gavel"></i> واجهة الصرح</a>
+        <a href="#pro-bio" onclick="toggleMenu()"><i class="fa-solid fa-graduation-cap"></i> الميثاق المهني</a>
+        <a href="#elite-team" onclick="toggleMenu()"><i class="fa-solid fa-users-gear"></i> المستشارون والتخصصات</a>
+        <a href="#gps-locations" onclick="toggleMenu()"><i class="fa-solid fa-map-pinned"></i> المقار والعناوين</a>
+        <a href="asthara.html"><i class="fa-solid fa-calendar-check"></i> حجز استشارة</a>
+    </nav>
+
+    <!-- غلاف البروفايل بالصورة الفاخرة المعتمدة بدلاً من الـ 3D -->
+    <div class="hero-image-wrapper">
+        <div class="cover-image-layer">
+            <img src="cover.jpg" alt="غلاف مكتب المستشار">
+        </div>
+        
+        <!-- صورة اللوجو الرسمية -->
+        <div class="profile-avatar-container">
+            <img src="logo.png" alt="شعار صرح المحاماة">
+        </div>
+    </div>
+
+    <main>
+        <div class="title-architecture">
+            <h1>المستشار / محمد منير راشد</h1>
+            <p>للمحاماة والاستشارات القانونية المتكاملة والتحكيم</p>
+        </div>
+
+        <div class="legal-quote reveal">
+                القانون موجود... عشان يحمي حتى أصغر حقوقك.
+        </div>
+
+        <!-- قسم الفيديو التوضيحي المستقل يشتغل لوحده وصامت ومكرر -->
+        <div class="showcase-video-container reveal">
+            <video src="logo.mp4" autoplay loop muted playsinline></video>
+        </div>
+
+        <!-- الميثاق المهني والمؤهلات مقسمة بدقة -->
+        <h2 class="section-tag reveal" id="pro-bio"><i class="fa-solid fa-building-columns"></i> الهيكل الأكاديمي والمهني للمكتب</h2>
+        <div class="hollow-bio-stack">
+            <!-- مربع الخبرة القضائية لوحده تماماً -->
+            <div class="hollow-box reveal">
+                <i class="fa-solid fa-gavel"></i>
+                <div>
+                    <h4>الخبرة القضائية العريقة</h4>
+                    <p>أكثر من 27 عاماً من الخبرة العملية والتمثيل القضائي الاحترافي الشامل أمام المحاكم المصرية بمختلف درجاتها.</p>
+                </div>
+            </div>
+            <!-- مربع المؤهلات الأكاديمية لوحده تماماً -->
+            <div class="hollow-box reveal">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <div>
+                    <h4>الخلفية الأكاديمية والدرجات</h4>
+                    <p>ليسانس حقوق من جامعة القاهرة العريقة، ومستشار حائز على درجة الماجستير في القانون العام والخاص لصياغة متكاملة للدفوع.</p>
+                </div>
+            </div>
+            <div class="hollow-box reveal">
+                <i class="fa-solid fa-fingerprint"></i>
+                <div>
+                    <h4>الأكاديمية التخصصية للأدلة الجنائية</h4>
+                    <p>حاصل على دورة الأكاديمية التخصصية في علوم الأدلة الجنائية والتحقيق، لتقويض الثغرات الفنية والطب الشرعي بكفاءة تامة.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- التخصصات ومستشاري الفريق الخمسة التفاعلية -->
+        <h2 class="section-tag reveal" id="elite-team"><i class="fa-solid fa-shield-halved"></i> التخصصات والمجلس الاستشاري (اضغط للكارت ليلف)</h2>
+        <div class="team-flip-container">
+            
+            <!-- التخصص 1 -->
+            <div class="flip-card reveal" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <h3>قضايا الأحوال الشخصية والأسرة</h3>
+                        <div class="role-tag">المستشار الأول / رئيس الدائرة الأسرية</div>
+                        <p>دراسة متكاملة لكل حالة بدقة فائقة لمنع ضياع الحقوق بسبب الثغرات الإجرائية المحتملة.</p>
+                        <div class="tap-hint"><i class="fa-solid fa-rotate"></i> اضغط للكشف عن النطاق القانوني</div>
+                    </div>
+                    <div class="card-back">
+                        <h4>النطاق القضائي التفصيلي:</h4>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> دعاوى الطلاق والخلع والتطليق بكافة أنواعه.</li>
+                            <li><i class="fa-solid fa-check"></i> دعاوى إثبات الزواج، وإثبات النسب ونفيه وفقًا للقانون.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- التخصص 2 -->
+            <div class="flip-card reveal" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <h3>النفقات ومنازعات التمكين السكنية</h3>
+                        <div class="role-tag">المستشار الثاني / نائب الهيئة التنفيذية للأحكام</div>
+                        <p>انتزاع قرارات التمكين بحسم قانوني سريع ومتابعة التحريات المالية بدقة متناهية.</p>
+                        <div class="tap-hint"><i class="fa-solid fa-rotate"></i> اضغط للكشف عن النطاق القانوني</div>
+                    </div>
+                    <div class="card-back">
+                        <h4>النطاق القضائي التفصيلي:</h4>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> قضايا النفقة الزوجية ونفقة الصغار والمتعة والمؤخر.</li>
+                            <li><i class="fa-solid fa-check"></i> منازعات التمكين من مسكن الزوجية وتنفيذها بقوة القانون.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- التخصص 3 -->
+            <div class="flip-card reveal" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <h3>الحضانة والرؤية والتسويات الودية</h3>
+                        <div class="role-tag">المستشار الثالث / أمين الدائرة التوفيقية والأسرة</div>
+                        <p>تسوية المنازعات بالطرق القانونية التي تضمن الحفاظ على الحقوق وتقليل الخصومة.</p>
+                        <div class="tap-hint"><i class="fa-solid fa-rotate"></i> اضغط للكشف عن النطاق القانوني</div>
+                    </div>
+                    <div class="card-back">
+                        <h4>النطاق القضائي التفصيلي:</h4>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> الحضانة والرؤية والاستضافة وإسقاط الحضانة ونقلها شرعاً.</li>
+                            <li><i class="fa-solid fa-check"></i> تنفيذ الأحكام ومتابعة الإجراءات كاملة أمام المحاكم المختصة.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- التخصص 4 -->
+            <div class="flip-card reveal" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <h3>القضايا العقارية وتقنين وضع اليد</h3>
+                        <div class="role-tag">المستشار الرابع / رئيس دائرة الشهر العقاري والمنازعات</div>
+                        <p>الوقت العقاري حاسم، وأي تأخير يؤدي لتعقيدات تؤثر على حقوقك الاستثمارية ومستقبلك.</p>
+                        <div class="tap-hint"><i class="fa-solid fa-rotate"></i> اضغط للكشف عن النطاق القانوني</div>
+                    </div>
+                    <div class="card-back">
+                        <h4>النطاق القضائي التفصيلي:</h4>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> توفير تمثيل قانوني متكامل لملفات تقنين وضع اليد المعقدة.</li>
+                            <li><i class="fa-solid fa-check"></i> التسجيل العقاري بالشهر العقاري ومتابعة الاعتراضات والمنازعات.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- التخصص 5 -->
+            <div class="flip-card reveal" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-inner">
+                    <div class="card-front">
+                        <h3>فحص العقود والتمثيل الإداري الاحترافي</h3>
+                        <div class="role-tag">المستشار الخامس / المنسق العام للدفوع وفحص العقود</div>
+                        <p>توفير حلول عملية تقلل المخاطر وتحافظ على الملكية المطلقة للأفراد والشركات بمصر.</p>
+                        <div class="tap-hint"><i class="fa-solid fa-rotate"></i> اضغط للكشف عن النطاق القانوني</div>
+                    </div>
+                    <div class="card-back">
+                        <h4>النطاق القضائي التفصيلي:</h4>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> مراجعة وفحص المستندات والعقود بدقة لمنع الأخطاء الإجرائية.</li>
+                            <li><i class="fa-solid fa-check"></i> تمثيل قانوني احترافي قاطع أمام الجهات الإدارية والقضائية.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- الخطوط الساخنة للتواصل المباشر -->
+        <h2 class="section-tag reveal"><i class="fa-solid fa-headset"></i> الخطوط الساخنة للتواصل المباشر</h2>
+        <div class="contact-fast-rack reveal">
+            <a href="https://wa.me/201111021670" class="fast-btn wp" target="_blank"><i class="fa-brands fa-whatsapp"></i> واتساب: 01111021670</a>
+            <a href="tel:01090907756" class="fast-btn phone"><i class="fa-solid fa-phone"></i> اتصل: 01090907756</a>
+        </div>
+
+        <!-- العناوين الرسمية والمقار الجغرافية خرائط Google -->
+        <h2 class="section-tag reveal" id="gps-locations"><i class="fa-solid fa-map-location-dot"></i> الفروع الإدارية المعتمدة (خرائط Google)</h2>
+        <div class="gps-grid">
+            <a href="https://maps.google.com/?q=التجمع+الثالث+150+ي+جاردينيا+2+أمام+الغابة+المتحجرة" class="gps-card-btn reveal" target="_blank">
+                <div class="btn-badge"><i class="fa-solid fa-compass"></i></div>
+                <div>
+                    <h5>فرع القاهرة الجديدة (التجمع الثالث)</h5>
+                    <p>150 .ي. جاردينيا 2 أمام الغابة المتحجرة مباشرة.</p>
+                </div>
+            </a>
+            <a href="https://maps.google.com/?q=ميدان+الدقي+2+شارع+حسن+والي+متفرع+من+شارع+التحرير" class="gps-card-btn reveal" target="_blank">
+                <div class="btn-badge"><i class="fa-solid fa-compass"></i></div>
+                <div>
+                    <h5>فرع الجيزة (ميدان الدقي)</h5>
+                    <p>2 شارع حسن والي متفرع من شارع التحرير حيويّاً.</p>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- الإجراء العائم الرئيسي لحجز الاستشارات -->
+    <a href="asthara.html" class="cta-action-sheet">
+        <i class="fa-solid fa-scale-balanced"></i> حجز استشارة قانونية رسمية
+    </a>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        // إدارة تدوير كروت التخصصات بمرونة عند النقر
+        function flipCard(cardElement) {
+            const innerCard = cardElement.querySelector('.flip-card-inner');
+            innerCard.classList.toggle('flipped');
+        }
+
+        // مراقب السكرول للظهور التدريجي الفخم للمربعات
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.05 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

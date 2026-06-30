@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>تنسيق مجلس استشاري - المستشار محمد منير راشد</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #04080f;
+            --card-bg: rgba(9, 18, 31, 0.95);
+            --gold-dark: #b89028;
+            --gold-light: #e5c158;
+            --text-light: #f5f6f8;
+            --input-border: rgba(184, 144, 40, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 25px 20px;
+        }
+
+        .back-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--gold-light);
+            font-weight: 700;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            width: fit-content;
+        }
+
+        .form-container {
+            background: var(--card-bg);
+            border: 1px solid var(--gold-dark);
+            border-radius: 20px;
+            padding: 25px 20px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+            backdrop-filter: blur(12px);
+        }
+
+        .form-container h2 {
+            color: var(--gold-light);
+            font-size: 1.35rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .form-container p {
+            color: #a0aec0;
+            font-size: 0.85rem;
+            text-align: center;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--gold-light);
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-group i.input-icon {
+            position: absolute;
+            right: 15px;
+            top: 42px;
+            color: var(--gold-dark);
+            font-size: 1.1rem;
+            pointer-events: none;
+        }
+
+        .form-control {
+            width: 100%;
+            background: #050b14;
+            border: 1px solid var(--input-border);
+            border-radius: 10px;
+            padding: 14px 45px 14px 15px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.3s;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--gold-light);
+            box-shadow: 0 0 10px rgba(229, 193, 88, 0.2);
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper::after {
+            content: '\f107';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 15px;
+            top: 16px;
+            color: var(--gold-light);
+            pointer-events: none;
+        }
+
+        select.form-control option {
+            background-color: #09121f;
+            color: var(--text-light);
+            padding: 15px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+            color: #000;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 25px;
+            box-shadow: 0 5px 20px rgba(184, 144, 40, 0.3);
+        }
+
+        /* واجهة إشعار النجاح التام */
+        .success-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(4, 8, 15, 0.96);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.4s ease;
+        }
+
+        .success-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .success-card {
+            background: var(--card-bg);
+            border: 1px solid var(--gold-dark);
+            padding: 35px 20px;
+            border-radius: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .success-card i {
+            font-size: 3.5rem;
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+
+        .success-card h3 {
+            color: var(--gold-light);
+            margin-bottom: 10px;
+        }
+
+        .success-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .success-card button {
+            background: transparent;
+            border: 1px solid var(--gold-light);
+            color: var(--gold-light);
+            padding: 10px 30px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-nav">
+        <i class="fa-solid fa-arrow-right"></i> العودة لصرح المحاماة
+    </a>
+
+    <div class="form-container">
+        <h2>جدولة استشارة قانونية رسمية</h2>
+        <p>الرجاء ملء البيانات بخصوصية تامة، وسيتم إدراج الملف ضمن الجلسات الاستشارية القادمة للمكتب فوراً.</p>
+        
+        <form id="consultationForm" onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+                <label>الاسم الثلاثي المعتمد</label>
+                <i class="fa-solid fa-user-shield input-icon"></i>
+                <input type="text" id="clientName" class="form-control" placeholder="أدخل اسمك كما في الهوية الرسمية" required>
+            </div>
+
+            <div class="form-group">
+                <label>الرقم الخلوي (الملف الساخن)</label>
+                <i class="fa-solid fa-phone-flip input-icon"></i>
+                <input type="tel" id="clientPhone" class="form-control" placeholder="رقم الهاتف الفعال للتواصل السريع" required>
+            </div>
+
+            <div class="form-group">
+                <label>الاختصاص القانوني المستهدف</label>
+                <i class="fa-solid fa-scale-balanced input-icon"></i>
+                <div class="select-wrapper">
+                    <select id="caseType" class="form-control" required>
+                        <option value="" disabled selected hidden>اختر مسار التخصص</option>
+                        <option value="الأحوال الشخصية ونقل الحضانة">قضايا الأحوال الشخصية ونقل الحضانة</option>
+                        <option value="النفقات ومنازعات التمكين">النفقة الزوجية ومنازعات تمكين مسكن الزوجية</option>
+                        <option value="المنازعات العقارية وتقنين وضع اليد">الشؤون العقارية وتقنين وضع اليد</option>
+                        <option value="مراجعة العقود وفحص الثغرات المستندية">فحص ومراجعة العقود الاستثمارية والثغرات</option>
+                        <option value="الترافع القضائي ومجلس الدولة">التمثيل القضائي الإداري ومجلس الدولة</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>قناة الرد والبروتوكول المفضل</label>
+                <i class="fa-solid fa-handshake input-icon"></i>
+                <div class="select-wrapper">
+                    <select id="contactMethod" class="form-control" required>
+                        <option value="" disabled selected hidden>اختر وسيلة انعقاد التواصل</option>
+                        <option value="تأمين محادثة مشفرة عبر الواتساب">إرسال تفاصيل عبر الواتساب</option>
+                        <option value="اتصال أمني مباشر من المستشار">اتصال تلفوني مباشر من مستشار الدائرة</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <i class="fa-solid fa-lock"></i> إرسال الطلب بأمان مشفر
+            </button>
+        </form>
+    </div>
+
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-card">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h3>تم تشفير وإرسال بياناتك</h3>
+            <p>سعادة الموكل، تم تسجيل بياناتك بأمان في المنظومة الخلفية للمكتب وجاري تخصيص الموعد المناسب لطلبكم.</p>
+            <button onclick="redirectHome()">موافق</button>
+        </div>
+    </div>
+
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const botToken = "8507551918:AAFYVT-CGPgmJsESwix7E6YVAeziVKfrKes";
+            const chatId = "7292128411";
+
+            const name = document.getElementById('clientName').value;
+            const phone = document.getElementById('clientPhone').value;
+            const caseType = document.getElementById('caseType').value;
+            const contactMethod = document.getElementById('contactMethod').value;
+
+            const secureMessage = `⚖️ *استشارة جديدة واردة للمستشار محمد منير راشد* ⚖️\n\n` +
+                                  `👤 *مقدم الطلب:* ${name}\n` +
+                                  `📞 *رقم الاتصال:* ${phone}\n` +
+                                  `📁 *دائرة الاختصاص:* ${caseType}\n` +
+                                  `💼 *بروتوكول التواصل:* ${contactMethod}\n\n` +
+                                  `🔒 _البيانات مشفرة ومحمية بالكامل بالنظام البرمجي للموقع_`;
+
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: secureMessage,
+                    parse_mode: "Markdown"
+                })
+            })
+            .then(res => {
+                if(res.ok) document.getElementById('successOverlay').classList.add('active');
+                else alert("حدث خطأ تقني في الاتصال بالخادم، يرجى إعادة الإرسال.");
+            })
+            .catch(() => alert("يرجى التحقق من اتصال الإنترنت لديك."));
+        }
+
+        function redirectHome() { window.location.href = "index.html"; }
+    </script>
+</body>
+</html>
